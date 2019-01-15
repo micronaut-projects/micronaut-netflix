@@ -1,0 +1,5 @@
+rootProject.name = 'netflix'
+
+include 'netflix-archaius'
+include 'netflix-hystrix'
+include 'netflix-ribbon'

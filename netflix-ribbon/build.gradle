@@ -1,0 +1,29 @@
+apply plugin: "io.spring.dependency-management"
+
+dependencyManagement {
+    imports {
+        mavenBom "io.micronaut:micronaut-bom:$micronautVersion"
+    }
+}
+
+dependencies {
+    annotationProcessor "io.micronaut:micronaut-inject-java"
+    annotationProcessor "io.micronaut.docs:micronaut-docs-asciidoc-config-props:$micronautDocsVersion"    
+
+    
+    compile project(":netflix-archaius")
+    compile "io.micronaut:micronaut-http-client:$micronautVersion"
+    compile "com.github.akarnokd:rxjava2-interop:$rxJavaInteropVersion"
+    compile "com.netflix.ribbon:ribbon-loadbalancer:$ribbonVersion", {
+        exclude group:'com.netflix.ribbon', module:'ribbon-core'
+        exclude group:'com.netflix.archaius', module:'archaius-core'
+    }
+    compile "com.netflix.ribbon:ribbon-core:$ribbonVersion", {
+        exclude group:'commons-configuration', module:'commons-configuration'
+        exclude group:'com.netflix.archaius', module:'archaius-core'
+    }
+    testAnnotationProcessor "io.micronaut:micronaut-inject-java"
+    testCompile "io.micronaut:micronaut-discovery-client"
+    testCompile "io.micronaut:micronaut-inject-groovy"
+    testCompile "io.micronaut:micronaut-http-server-netty"
+}
