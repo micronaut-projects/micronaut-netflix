@@ -1,0 +1,6 @@
+io.micronaut.configuration.archaius1
+io.micronaut.configuration.hystrix
+io.micronaut.configuration.hystrix.annotation
+io.micronaut.configuration.hystrix.stream
+io.micronaut.configuration.ribbon
+io.micronaut.configuration.ribbon.discovery
