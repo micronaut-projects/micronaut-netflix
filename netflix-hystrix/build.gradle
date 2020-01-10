@@ -20,7 +20,7 @@ dependencies {
         exclude group:"com.fasterxml.jackson.core", module:'jackson-annotations'
     }
 
-    runtime "com.fasterxml.jackson.module:jackson-module-afterburner:2.9.7"
+    runtime "com.fasterxml.jackson.module:jackson-module-afterburner:2.10.2"
 
     runtime "io.reactivex:rxjava:$rxJava1Version"
     runtime "com.github.akarnokd:rxjava2-interop:$rxJavaInteropVersion"
