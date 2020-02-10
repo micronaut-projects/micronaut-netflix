@@ -93,7 +93,7 @@
         <h1>Micronaut Netflix</h1>
         <p></p>
         <p>Integration between Micronaut and Netflix OSS</p>
-        <p><strong>Version:</strong> 1.0.5.BUILD-SNAPSHOT</p>
+        <p><strong>Version:</strong> <select style='max-width: 200px' onChange='window.document.location.href=this.options[this.selectedIndex].value;'><option selected='selected' value='https://micronaut-projects.github.io/micronaut-netflix/snapshot/guide/index.html'>1.1.0.BUILD-SNAPSHOT</option><option value='https://micronaut-projects.github.io/micronaut-netflix/1.0.4/guide/index.html'>1.0.4</option></select></p>
     </div>
     
 
@@ -148,8 +148,15 @@
 </div>
 <div class="paragraph">
 <p>        <div class="listingblock multi-language-sample">
+<div class="title"></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="gradle">compile <span class="hljs-string">'io.micronaut.configuration:micronaut-netflix-hystrix'</span></code></pre>
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="gradle-groovy">compile <span class="hljs-string">'io.micronaut.configuration:micronaut-netflix-hystrix'</span></code></pre>
+</div>
+</div>
+        <div class="listingblock multi-language-sample">
+<div class="title"></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle-kotlin">compile(<span class="hljs-string">"io.micronaut.configuration:micronaut-netflix-hystrix")</span></code></pre>
 </div>
 </div>
 <div class="listingblock multi-language-sample">
@@ -267,8 +274,15 @@ For information on how to customize the Hystrix thread pool, group and propertie
 </div>
 <div class="paragraph">
 <p>        <div class="listingblock multi-language-sample">
+<div class="title"></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="gradle">compile <span class="hljs-string">'io.micronaut.configuration:micronaut-netflix-ribbon'</span></code></pre>
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="gradle-groovy">compile <span class="hljs-string">'io.micronaut.configuration:micronaut-netflix-ribbon'</span></code></pre>
+</div>
+</div>
+        <div class="listingblock multi-language-sample">
+<div class="title"></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle-kotlin">compile(<span class="hljs-string">"io.micronaut.configuration:micronaut-netflix-ribbon")</span></code></pre>
 </div>
 </div>
 <div class="listingblock multi-language-sample">
