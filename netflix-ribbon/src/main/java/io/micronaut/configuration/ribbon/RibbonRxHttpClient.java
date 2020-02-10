@@ -32,15 +32,18 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.client.DefaultHttpClient;
 import io.micronaut.http.client.HttpClientConfiguration;
 import io.micronaut.http.client.LoadBalancer;
+import io.micronaut.http.client.filter.HttpClientFilterResolver;
 import io.micronaut.http.client.ssl.NettyClientSslBuilder;
 import io.micronaut.http.codec.MediaTypeCodecRegistry;
 import io.micronaut.http.context.ServerRequestContext;
 import io.micronaut.http.filter.HttpClientFilter;
+import io.micronaut.http.netty.channel.NettyThreadFactory;
 import io.reactivex.Flowable;
 import rx.Observable;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.net.URI;
 import java.util.Collections;
 import java.util.List;
@@ -71,29 +74,25 @@ public class RibbonRxHttpClient extends DefaultHttpClient {
      * @param nettyClientSslBuilder nettyClientSslBuilder
      * @param codecRegistry codecRegistry
      * @param executionListeners executionListeners
-     * @param annotationMetadataResolver annotationMetadataResolver
-     * @param filters filters
      */
     @Inject
     public RibbonRxHttpClient(
             @Parameter LoadBalancer loadBalancer,
             @Parameter HttpClientConfiguration configuration,
             @Parameter @Nullable String contextPath,
-            @Nullable ThreadFactory threadFactory,
+            @Parameter HttpClientFilterResolver filterResolver,
+            @Named(NettyThreadFactory.NAME) @Nullable ThreadFactory threadFactory,
             NettyClientSslBuilder nettyClientSslBuilder,
             MediaTypeCodecRegistry codecRegistry,
-            @Nullable AnnotationMetadataResolver annotationMetadataResolver,
-            List<HttpClientFilter> filters,
             List<RibbonExecutionListenerAdapter> executionListeners) {
         super(
                 loadBalancer,
                 configuration,
                 contextPath,
+                filterResolver,
                 threadFactory,
                 nettyClientSslBuilder,
-                codecRegistry,
-                annotationMetadataResolver,
-                filters);
+                codecRegistry);
         this.executionListeners = CollectionUtils.isEmpty(executionListeners) ? Collections.emptyList() : executionListeners;
         if (loadBalancer instanceof RibbonLoadBalancer) {
             this.loadBalancer = (RibbonLoadBalancer) loadBalancer;

@@ -8,22 +8,24 @@ dependencyManagement {
 
 dependencies {
     annotationProcessor "io.micronaut:micronaut-inject-java"
-    annotationProcessor "io.micronaut.docs:micronaut-docs-asciidoc-config-props:$micronautDocsVersion"    
+    annotationProcessor "io.micronaut.docs:micronaut-docs-asciidoc-config-props:$micronautDocsVersion"
 
-    
-    compile project(":netflix-archaius")
-    compile "io.micronaut:micronaut-http-client:$micronautVersion"
-    compile "com.github.akarnokd:rxjava2-interop:$rxJavaInteropVersion"
-    compile "com.netflix.ribbon:ribbon-loadbalancer:$ribbonVersion", {
+
+    api "io.micronaut:micronaut-http-client:$micronautVersion"
+    api "com.netflix.ribbon:ribbon-loadbalancer:2.7.17", {
         exclude group:'com.netflix.ribbon', module:'ribbon-core'
         exclude group:'com.netflix.archaius', module:'archaius-core'
     }
-    compile "com.netflix.ribbon:ribbon-core:$ribbonVersion", {
+    api "com.netflix.ribbon:ribbon-core:2.7.17", {
         exclude group:'commons-configuration', module:'commons-configuration'
         exclude group:'com.netflix.archaius', module:'archaius-core'
     }
+    implementation project(":netflix-archaius")
+    implementation "com.github.akarnokd:rxjava2-interop:0.13.7"
+
+    testImplementation "com.netflix.servo:servo-core:0.10.1"
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
-    testCompile "io.micronaut:micronaut-discovery-client"
-    testCompile "io.micronaut:micronaut-inject-groovy"
-    testCompile "io.micronaut:micronaut-http-server-netty"
+    testImplementation "io.micronaut:micronaut-discovery-client"
+    testImplementation "io.micronaut:micronaut-inject-groovy"
+    testImplementation "io.micronaut:micronaut-http-server-netty"
 }

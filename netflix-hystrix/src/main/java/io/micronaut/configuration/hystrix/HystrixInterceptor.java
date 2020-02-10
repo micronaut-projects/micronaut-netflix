@@ -101,9 +101,9 @@ public class HystrixInterceptor implements MethodInterceptor<Object, Object> {
         } else {
 
             String hystrixGroup = resolveHystrixGroup(context, settings);
-            String commandName = cmd.getValue(String.class).orElse(context.getMethodName());
-            String threadPool = settings != null ? settings.get("threadPool", String.class, null) : null;
-            boolean wrapExceptions = settings != null ? settings.getRequiredValue("wrapExceptions", Boolean.class) : false;
+            String commandName = cmd.stringValue().orElse(context.getMethodName());
+            String threadPool = settings != null ? settings.stringValue("threadPool").orElse(null) : null;
+            boolean wrapExceptions = settings != null ? settings.booleanValue("wrapExceptions").orElse(true) : true;
 
             ReturnType<Object> returnType = context.getReturnType();
             Class<Object> javaReturnType = returnType.getType();
@@ -176,15 +176,19 @@ public class HystrixInterceptor implements MethodInterceptor<Object, Object> {
                         .orElseThrow(() -> new IllegalStateException("Unsupported Reactive type: " + javaReturnType));
                 }
             } else {
-                String finalCommandName = commandName;
                 HystrixCommand.Setter setter = setterMap.computeIfAbsent(context.getExecutableMethod(), method ->
-                    buildSetter(hystrixGroup, finalCommandName, threadPool, settings)
+                    buildSetter(hystrixGroup, commandName, threadPool, settings)
                 );
 
                 HystrixCommand<Object> hystrixCommand = new HystrixCommand<Object>(setter) {
                     @Override
                     protected Object run() {
                         return context.proceed();
+                    }
+
+                    @Override
+                    protected String getFallbackMethodName() {
+                        return super.getFallbackMethodName();
                     }
 
                     @Override

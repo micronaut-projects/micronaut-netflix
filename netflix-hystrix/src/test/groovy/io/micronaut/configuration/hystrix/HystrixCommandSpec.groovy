@@ -341,7 +341,10 @@ class HystrixCommandSpec extends Specification {
     }
 
     @Singleton
-    @io.micronaut.configuration.hystrix.annotation.Hystrix(group = "count", threadPool = 'counter-pool')
+    @io.micronaut.configuration.hystrix.annotation.Hystrix(
+            group = "count",
+            threadPool = 'counter-pool',
+            wrapExceptions = false)
     static class CountService {
 
         int countValue = 0

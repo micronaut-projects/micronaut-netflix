@@ -20,6 +20,7 @@ import com.netflix.client.VipAddressResolver;
 import com.netflix.client.config.CommonClientConfigKey;
 import com.netflix.client.config.IClientConfig;
 import com.netflix.client.config.IClientConfigKey;
+import com.netflix.client.config.Property;
 import io.micronaut.context.env.Environment;
 import io.micronaut.core.convert.ConversionService;
 import io.micronaut.core.naming.NameUtils;
@@ -32,6 +33,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
 
 /**
  * Abstract implementation of the {@link IClientConfig} interface.
@@ -57,6 +59,36 @@ public abstract class AbstractRibbonClientConfig implements IClientConfig {
      */
     public AbstractRibbonClientConfig(Environment environment) {
         this.environment = environment;
+    }
+
+    @Override
+    public void setNameSpace(String nameSpace) {
+
+    }
+
+    @Override
+    public <T> Property<T> getGlobalProperty(IClientConfigKey<T> key) {
+        return getDynamicProperty(key);
+    }
+
+    @Override
+    public <T> Property<T> getDynamicProperty(IClientConfigKey<T> key) {
+        return new Property<T>() {
+            @Override
+            public void onChange(Consumer<T> consumer) {
+                // no-op
+            }
+
+            @Override
+            public Optional<T> get() {
+                return environment.getProperty(qualifyKey(key), key.type());
+            }
+
+            @Override
+            public T getOrDefault() {
+                return environment.getProperty(qualifyKey(key), key.type(), key.defaultValue());
+            }
+        };
     }
 
     /**

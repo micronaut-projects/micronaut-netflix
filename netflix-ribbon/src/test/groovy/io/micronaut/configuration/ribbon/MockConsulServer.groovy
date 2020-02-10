@@ -21,6 +21,8 @@ import io.micronaut.discovery.consul.client.v1.CatalogEntry
 import io.micronaut.discovery.consul.client.v1.ConsulOperations
 import io.micronaut.discovery.consul.client.v1.HealthEntry
 import io.micronaut.discovery.consul.client.v1.KeyValue
+import io.micronaut.discovery.consul.client.v1.LocalAgentConfiguration
+import io.micronaut.discovery.consul.client.v1.MemberEntry
 import io.micronaut.discovery.consul.client.v1.NewServiceEntry
 import io.micronaut.discovery.consul.client.v1.ServiceEntry
 import io.micronaut.http.HttpStatus
@@ -119,6 +121,16 @@ class MockConsulServer implements ConsulOperations {
     @Override
     Publisher<Map<String, ServiceEntry>> getServices() {
         return Publishers.just(Collections.emptyMap())
+    }
+
+    @Override
+    Publisher<List<MemberEntry>> getMembers() {
+        return Flowable.empty()
+    }
+
+    @Override
+    Publisher<LocalAgentConfiguration> getSelf() {
+        return Flowable.empty()
     }
 
     @Override
