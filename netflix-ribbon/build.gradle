@@ -23,7 +23,7 @@ dependencies {
     implementation project(":netflix-archaius")
     implementation "com.github.akarnokd:rxjava2-interop:0.13.7"
 
-    testImplementation "com.netflix.servo:servo-core:0.10.1"
+    testImplementation "com.netflix.servo:servo-core:0.12.28"
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
     testImplementation "io.micronaut:micronaut-discovery-client"
     testImplementation "io.micronaut:micronaut-inject-groovy"
