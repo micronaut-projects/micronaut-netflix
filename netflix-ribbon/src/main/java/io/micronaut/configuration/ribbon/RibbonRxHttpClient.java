@@ -1,11 +1,11 @@
 /*
- * Copyright 2017-2018 original authors
+ * Copyright 2017-2020 original authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,7 +22,6 @@ import com.netflix.loadbalancer.reactive.LoadBalancerCommand;
 import hu.akarnokd.rxjava.interop.RxJavaInterop;
 import io.micronaut.context.BeanContext;
 import io.micronaut.context.annotation.*;
-import io.micronaut.core.annotation.AnnotationMetadataResolver;
 import io.micronaut.core.async.publisher.Publishers;
 import io.micronaut.core.io.buffer.ByteBuffer;
 import io.micronaut.core.type.Argument;
@@ -36,7 +35,6 @@ import io.micronaut.http.client.filter.HttpClientFilterResolver;
 import io.micronaut.http.client.ssl.NettyClientSslBuilder;
 import io.micronaut.http.codec.MediaTypeCodecRegistry;
 import io.micronaut.http.context.ServerRequestContext;
-import io.micronaut.http.filter.HttpClientFilter;
 import io.micronaut.http.netty.channel.NettyThreadFactory;
 import io.reactivex.Flowable;
 import rx.Observable;
@@ -70,6 +68,7 @@ public class RibbonRxHttpClient extends DefaultHttpClient {
      * @param loadBalancer loadBalancer
      * @param configuration configuration
      * @param contextPath contextPath
+     * @param filterResolver Filter Resolver
      * @param threadFactory threadFactory
      * @param nettyClientSslBuilder nettyClientSslBuilder
      * @param codecRegistry codecRegistry
