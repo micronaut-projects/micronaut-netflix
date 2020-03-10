@@ -68,6 +68,7 @@ public class RibbonRxHttpClient extends DefaultHttpClient {
      * @param loadBalancer loadBalancer
      * @param configuration configuration
      * @param contextPath contextPath
+     * @param filterResolver Filter Resolver
      * @param threadFactory threadFactory
      * @param nettyClientSslBuilder nettyClientSslBuilder
      * @param codecRegistry codecRegistry
