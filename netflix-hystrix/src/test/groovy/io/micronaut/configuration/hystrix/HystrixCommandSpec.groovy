@@ -80,7 +80,6 @@ class HystrixCommandSpec extends Specification {
         myHook.executed.size() ==0
 
         when:
-//        String v = (f.blockingFirst() as rx.Observable).toBlocking().first()
         String v = f.blockingFirst()
 
         then:
