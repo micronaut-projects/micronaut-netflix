@@ -25,7 +25,7 @@ import io.micronaut.context.env.Environment;
 import io.micronaut.context.event.ApplicationEventListener;
 import io.micronaut.core.reflect.ReflectionUtils;
 import io.micronaut.discovery.ServiceInstance;
-import io.micronaut.discovery.event.ServiceStartedEvent;
+import io.micronaut.discovery.event.ServiceReadyEvent;
 
 import javax.annotation.PreDestroy;
 import java.io.Closeable;
@@ -41,7 +41,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 1.0
  */
 @Context
-public class EnvironmentDeploymentContext implements DeploymentContext, ApplicationEventListener<ServiceStartedEvent>, Closeable {
+public class EnvironmentDeploymentContext implements DeploymentContext, ApplicationEventListener<ServiceReadyEvent>, Closeable {
 
     private final Environment environment;
     private ServiceInstance instance;
@@ -197,7 +197,7 @@ public class EnvironmentDeploymentContext implements DeploymentContext, Applicat
     }
 
     @Override
-    public void onApplicationEvent(ServiceStartedEvent event) {
+    public void onApplicationEvent(ServiceReadyEvent event) {
         this.instance = event.getSource();
         ConfigurationManager.setDeploymentContext(
             this
