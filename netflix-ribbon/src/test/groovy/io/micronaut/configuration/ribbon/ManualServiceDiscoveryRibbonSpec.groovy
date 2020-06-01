@@ -15,20 +15,14 @@ class ManualServiceDiscoveryRibbonSpec extends Specification {
     void "test manual load balancer config"() {
         given:
         ApplicationContext ctx = ApplicationContext.run(
-                'micronaut.http.services.foo.urls': 'http://google.com',
+                'micronaut.http.services.foo.urls': 'https://google.com',
                 'foo.ribbon.VipAddress':'test'
         )
 
         when:
         SomeService someService = ctx.getBean(SomeService)
 
-        then:
-        someService.client instanceof RibbonRxHttpClient
-        someService.client.loadBalancer.isPresent()
-
-
-        when:
-        RibbonLoadBalancer balancer = (RibbonLoadBalancer) someService.client.loadBalancer.get()
+        RibbonLoadBalancer balancer = (RibbonLoadBalancer) someService.client.loadBalancer
 
         then:
         balancer.clientConfig
@@ -38,7 +32,7 @@ class ManualServiceDiscoveryRibbonSpec extends Specification {
         def si = Flowable.fromPublisher(balancer.select()).blockingFirst()
 
         then:
-        si.URI == URI.create("http://google.com:-1")
+        si.URI == URI.create("https://google.com:-1")
 
         cleanup:
         ctx.close()
@@ -48,19 +42,12 @@ class ManualServiceDiscoveryRibbonSpec extends Specification {
     void "test manual load balancer config with Ribbon config"() {
         given:
         ApplicationContext ctx = ApplicationContext.run(
-                'foo.ribbon.listOfServers':'http://google.com'
+                'foo.ribbon.listOfServers':'https://google.com'
         )
 
         when:
         SomeService someService = ctx.getBean(SomeService)
-
-        then:
-        someService.client instanceof RibbonRxHttpClient
-        someService.client.loadBalancer.isPresent()
-
-
-        when:
-        RibbonLoadBalancer balancer = (RibbonLoadBalancer) someService.client.loadBalancer.get()
+        RibbonLoadBalancer balancer = (RibbonLoadBalancer) someService.client.loadBalancer
 
         then:
         balancer.clientConfig
@@ -69,7 +56,7 @@ class ManualServiceDiscoveryRibbonSpec extends Specification {
         def si = Flowable.fromPublisher(balancer.select()).blockingFirst()
 
         then:
-        si.URI == URI.create("http://google.com:80")
+        si.URI == URI.create("https://google.com:443")
 
         cleanup:
         ctx.close()

@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package io.micronaut.configuration.ribbon.discovery;
 
 import com.netflix.client.config.CommonClientConfigKey;
@@ -89,7 +88,7 @@ public class RibbonServiceInstanceListLoadBalancerFactory extends ServiceInstanc
         ServerList<Server> serverList = beanContext.findBean(ServerList.class, Qualifiers.byName(serviceID))
                                                    .orElseGet(() -> toRibbonServerList(serviceInstanceList));
 
-        if (niwsClientConfig.getPropertyAsBoolean(CommonClientConfigKey.InitializeNFLoadBalancer, true)) {
+        if (niwsClientConfig.get(CommonClientConfigKey.InitializeNFLoadBalancer, true)) {
             return createRibbonLoadBalancer(
                     niwsClientConfig,
                     rule,
