@@ -3,10 +3,10 @@ dependencies {
     annotationProcessor "io.micronaut.docs:micronaut-docs-asciidoc-config-props:$micronautDocsVersion"
 
     api "io.micronaut:micronaut-runtime:$micronautVersion"
-    api "com.netflix.hystrix:hystrix-core:1.5.18"
+    api "com.netflix.hystrix:hystrix-core:$hystrixVersion"
     implementation("io.micronaut.rxjava1:micronaut-rxjava1:1.0.0")
     implementation project(":netflix-archaius")
-    implementation "com.netflix.hystrix:hystrix-serialization:1.5.18", {
+    implementation "com.netflix.hystrix:hystrix-serialization:$hystrixVersion", {
         exclude group:"com.fasterxml.jackson.module", module:'jackson-module-afterburner'
         exclude group:"com.fasterxml.jackson.core", module:'jackson-core'
         exclude group:"com.fasterxml.jackson.core", module:'jackson-databind'
