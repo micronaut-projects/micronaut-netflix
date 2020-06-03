@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>Micronaut Netflix</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
+    <link rel="stylesheet" href="../css/custom.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8" />
+    <link rel="stylesheet" href="../css/highlight/agate.css">
+    <script src="../js/highlight.pack.js"></script>
+    <script src="../js/guide.js"></script>
+    <script src="../js/multi-language-sample.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet" href="../css/multi-language-sample.css"/>
+    <script src="../js/docs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.13/clipboard.min.js"></script>
+    <script type="text/javascript">
+        function addJsClass(el) {
+            var classes = document.body.className.split(" ");
+            classes.push("js");
+            document.body.className = classes.join(" ");
+        }
+    </script>
+
+</head>
+
+<body class="body" id="docs" onload="addJsClass();" onhashchange="highlightMenu()">
+
+<div id="table-of-content-nav-link" class="desktop">
+    <a id="theme-switcher" title="Switch to dark theme" href="javascript:switchTheme(true)"><i class="fa fa-moon-o"></i></a>
+    <a title="Collapse/Open Table of contents" title="Hide Table of Contents" href="javascript:hideTableOfContents();" class="button">[ + ]</a>
+</div>
+
+<div id="main">
+    <div id="navigation" class="no-print">
+        <div class="navTitle">
+            <span id="logo"><a href="http://micronaut.io" title="Go to Micronaut Website"><img src="../img/micronaut-logo-white.svg" alt="Micronaut"/></a></span>
+        </div>
+        <div class="navLinks">
+            <ul>
+                    <li><div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)" class="desktop">
+                            <a href="../guide/index.html" class="button">Table of contents</a>
+                            <div id="nav-summary-childs" style="display:none;">
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#netflixHystrix"><strong>2</strong><span>Hystrix Support</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#netflixRibbon"><strong>3</strong><span>Ribbon Support</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#repository"><strong>4</strong><span>Repository</span></a></div>
+                                
+                            </div>
+                        </div>
+                    </li>
+
+                <li id="table-of-content-nav-link-mobile" class="mobile">
+                    <a title="Scroll to Table of contents" href="javascript:scrollToTop();" class="button">Toc</a>
+                </li>
+                <li class="desktop">
+                    <a title="Go to API documentation" href="../api/index.html" class="button">API Reference</a>
+                </li>
+                <li class="mobile">
+                    <a title="Go to API documentation" href="../api/index.html" class="button">API</a>
+                </li>
+                <li class="desktop">
+                    <a title="Go to Configuration Reference documentation" href="../guide/configurationreference.html" class="button">Configuration Reference</a>
+                </li>
+                <li class="mobile">
+                    <a title="Go to Configuration Reference documentation" href="../guide/configurationreference.html" class="button">Conf</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    
+    <div id="table-of-content">
+        <div class="toc-content">
+
+        <h2>Table of Contents</h2>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-introduction"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-netflixHystrix"><a href="#netflixHystrix"><strong>2</strong><span>Hystrix Support</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-netflixRibbon"><a href="#netflixRibbon"><strong>3</strong><span>Ribbon Support</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-repository"><a href="#repository"><strong>4</strong><span>Repository</span></a></div>
+        
+        </div>
+    </div>
+    
+    <div class="docs-content">
+    <div class="project">
+        <h1>Micronaut Netflix</h1>
+        <p></p>
+        <p>Integration between Micronaut and Netflix OSS</p>
+        <p><strong>Version:</strong> <select style='max-width: 200px' onChange='window.document.location.href=this.options[this.selectedIndex].value;'><option value='https://micronaut-projects.github.io/micronaut-netflix/snapshot/guide/index.html'>SNAPSHOT</option><option selected='selected' value='https://micronaut-projects.github.io/micronaut-netflix/2.0.0.RC1/guide/index.html'>2.0.0.RC1</option><option value='https://micronaut-projects.github.io/micronaut-netflix/1.1.0/guide/index.html'>1.1.0</option><option value='https://micronaut-projects.github.io/micronaut-netflix/1.0.4/guide/index.html'>1.0.4</option></select></p>
+    </div>
+    
+<h1 id="introduction"><a class="anchor" href="#introduction"></a>1 Introduction</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-netflix/edit/master/src/main/docs/guide/introduction.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>This project features integrations between Netflix OSS and Micronaut.</p>
+</div>
+<div class="sect2">
+<h3 id="_release_history">Release History</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Micronaut 1.3.0 Minimum Version</p>
+</li>
+<li>
+<p>Upgrade to Hystrix 1.5.18</p>
+</li>
+<li>
+<p>Upgrade to Ribbon 2.7.17</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_1_0_0">1.0.0</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Initial Version</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<h1 id="netflixHystrix"><a class="anchor" href="#netflixHystrix"></a>2 Hystrix Support</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-netflix/edit/master/src/main/docs/guide/netflixHystrix.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Using the CLI</div>
+<div class="paragraph">
+<p>If you are creating your project using the Micronaut CLI, supply the <code>netflix-hystrix</code> feature to configure Hystrix in your project:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ mn create-app my-app --features netflix-hystrix</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/Netflix/Hystrix">Netflix Hystrix</a> is a fault tolerance library developed by the Netflix team and designed to improve resilience of inter process communication.</p>
+</div>
+<div class="paragraph">
+<p>Micronaut features integration with Hystrix through the <code>netflix-hystrix</code> module, which you can add to your <code>build.gradle</code> or <code>pom.xml</code>:</p>
+</div>
+<div class="paragraph">
+<p>        <div class="listingblock multi-language-sample">
+<div class="title"></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle">implementation(<span class="hljs-string">"io.micronaut.configuration:micronaut-netflix-hystrix")</span></code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="maven">&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.configuration&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-netflix-hystrix&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</p>
+</div>
+<div class="sect1">
+<h2 id="_using_the_hystrixcommand_annotation">Using the @HystrixCommand Annotation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With the above dependency declared you can annotate any method (including methods defined on <code>@Client</code> interfaces) with the <a href="../api/io/micronaut/configuration/hystrix/annotation/HystrixCommand.html">@HystrixCommand</a> annotation and it will wrap the methods execution in a Hystrix command. For example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Using @HystrixCommand</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">@HystrixCommand
+String hello(String name) {
+    return "Hello $name"
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This works for reactive return types such as <a href="http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Flowable.html">Flowable</a> etc. as well and the reactive type will be wrapped in a <code>HystrixObservableCommand</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <a href="../api/io/micronaut/configuration/hystrix/annotation/HystrixCommand.html">@HystrixCommand</a> annotation also integrates with Micronauts support for <a href="#retry">Retry Advice</a> and <a href="#clientFallback">Fallbacks</a></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For information on how to customize the Hystrix thread pool, group and properties see the javadoc for <a href="../api/io/micronaut/configuration/hystrix/annotation/HystrixCommand.html">@HystrixCommand</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_enabling_hystrix_stream_dashboard">Enabling Hystrix Stream &amp; Dashboard</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can enable a Server Sent Event stream to feed into the <a href="https://github.com/Netflix-Skunkworks/hystrix-dashboard">Hystrix Dashboard</a> by setting the <code>hystrix.stream.enabled</code> setting to <code>true</code> in <code>application.yml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Enabling Hystrix Stream</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">hystrix:
+    stream:
+        enabled: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This exposes a <code>/hystrix.stream</code> endpoint with the format the <a href="https://github.com/Netflix-Skunkworks/hystrix-dashboard">Hystrix Dashboard</a> expects.</p>
+</div>
+</div>
+</div>
+
+<h1 id="netflixRibbon"><a class="anchor" href="#netflixRibbon"></a>3 Ribbon Support</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-netflix/edit/master/src/main/docs/guide/netflixRibbon.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Using the CLI</div>
+<div class="paragraph">
+<p>If you are creating your project using the Micronaut CLI, supply the <code>netflix-ribbon</code> feature to configure Netflix Ribbon in your project:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ mn create-app my-app --features netflix-ribbon</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/Netflix/ribbon">Netflix Ribbon</a> is a inter-process communication library used at Netflix that has support for customizable load balancing strategies.</p>
+</div>
+<div class="paragraph">
+<p>If you need more flexibility in how your application performs client-side load balancing then you may wish use Micronaut&#8217;s Netflix Ribbon support.</p>
+</div>
+<div class="paragraph">
+<p>To add Ribbon support to your application add the <code>netflix-ribbon</code> configuration to <code>build.gradle</code> or <code>pom.xml</code>:</p>
+</div>
+<div class="paragraph">
+<p>        <div class="listingblock multi-language-sample">
+<div class="title"></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle">implementation(<span class="hljs-string">"io.micronaut.configuration:micronaut-netflix-ribbon")</span></code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="maven">&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.configuration&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-netflix-ribbon&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</p>
+</div>
+<div class="paragraph">
+<p>The <a href="../api/io/micronaut/http/client/LoadBalancer.html">LoadBalancer</a> implementations will now be <a href="../api/io/micronaut/configuration/ribbon/RibbonLoadBalancer.html">RibbonLoadBalancer</a> instances.</p>
+</div>
+<div class="paragraph">
+<p>Ribbon&#8217;s <a href="http://netflix.github.io/ribbon/ribbon-core-javadoc/com/netflix/client/config/CommonClientConfigKey.html">Configuration options</a> can be set using the <code>ribbon</code> namespace in configuration. For example in <code>application.yml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Configuring Ribbon</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">ribbon:
+    VipAddress: test
+    ServerListRefreshInterval: 2000</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each discovered client can also be configured under <code>ribbon.clients</code>. For example given a <code>@Client(id = "hello-world")</code> you can configure Ribbon settings with:</p>
+</div>
+<div class="listingblock">
+<div class="title">Per Client Ribbon Settings</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">ribbon:
+    clients:
+        hello-world:
+            VipAddress: test
+            ServerListRefreshInterval: 2000</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default Micronaut registers a <a href="../api/io/micronaut/configuration/ribbon/DiscoveryClientServerList.html">DiscoveryClientServerList</a> for each client that integrates Ribbon with Micronaut&#8217;s <a href="../api/io/micronaut/discovery/DiscoveryClient.html">DiscoveryClient</a>.</p>
+</div>
+
+<h1 id="repository"><a class="anchor" href="#repository"></a>4 Repository</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-netflix/edit/master/src/main/docs/guide/repository.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>You can find the source code of this project in this repository:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/micronaut-projects/micronaut-netflix">https://github.com/micronaut-projects/micronaut-netflix</a></p>
+</div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
