@@ -142,7 +142,7 @@ class HystrixCommandSpec extends Specification {
 
         then:
         value == "Default Title"
-        myHook.executed.size() == 1
+        myHook.executed.size() == 2
         myHook.fallbacks.size() == 1
 
         when:
@@ -151,7 +151,7 @@ class HystrixCommandSpec extends Specification {
 
         then:
         value == "Default Rx"
-        myHook.executed.size() == 1
+        myHook.executed.size() == 2
         myHook.fallbacks.size() == 1
 
         when:
@@ -170,7 +170,7 @@ class HystrixCommandSpec extends Specification {
 
         then:
         value == "Default Future"
-        myHook.executed.size() == 1
+        myHook.executed.size() == 2
         myHook.fallbacks.size() == 1
 
     }
@@ -230,7 +230,7 @@ class HystrixCommandSpec extends Specification {
     }
 
     @Fallback
-    static class BookServiceFallback implements BookOperations {
+    static class BookServiceFallback extends BookService {
 
         @Override
         String findTitle(String author) {

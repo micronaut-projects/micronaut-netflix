@@ -31,6 +31,10 @@ subprojects { Project subproject ->
     micronautBuild {
         dependencyUpdatesPattern = /.+(-|\.?)(b|M|RC|rc)(-|\.?)\d?.*/
     }
+
+    project.tasks.withType(Test) {
+        useJUnitPlatform()
+    }         
 }
 
 apply plugin: "io.micronaut.build.docs"
