@@ -1,18 +1,3 @@
-/*
- * Copyright 2017-2018 original authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package io.micronaut.configuration.hystrix
 
 import com.netflix.hystrix.HystrixInvokable
@@ -157,7 +142,7 @@ class HystrixCommandSpec extends Specification {
 
         then:
         value == "Default Title"
-        myHook.executed.size() == 1
+        myHook.executed.size() == 2
         myHook.fallbacks.size() == 1
 
         when:
@@ -166,7 +151,7 @@ class HystrixCommandSpec extends Specification {
 
         then:
         value == "Default Rx"
-        myHook.executed.size() == 1
+        myHook.executed.size() == 2
         myHook.fallbacks.size() == 1
 
         when:
@@ -185,7 +170,7 @@ class HystrixCommandSpec extends Specification {
 
         then:
         value == "Default Future"
-        myHook.executed.size() == 1
+        myHook.executed.size() == 2
         myHook.fallbacks.size() == 1
 
     }
@@ -245,7 +230,7 @@ class HystrixCommandSpec extends Specification {
     }
 
     @Fallback
-    static class BookServiceFallback implements BookOperations {
+    static class BookServiceFallback extends BookService {
 
         @Override
         String findTitle(String author) {
