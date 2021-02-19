@@ -3,6 +3,6 @@ dependencies {
     annotationProcessor "io.micronaut.docs:micronaut-docs-asciidoc-config-props:$micronautDocsVersion"    
 
     api "com.netflix.archaius:archaius-core:0.7.7"
-    implementation "commons-configuration:commons-configuration:1.10"
+    implementation "commons-configuration:commons-configuration:20041012.002804"
     implementation "io.micronaut:micronaut-runtime:$micronautVersion"
 }
